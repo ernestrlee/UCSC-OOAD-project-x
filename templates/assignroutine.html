@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}
+    <section id="main_container">
+        <div id="page_title" class="container-spread">
+            <div>
+                <h2>Assign routine:</h2>
+            </div>
+        </div>
+        <div>
+            <div class="routine-desc">
+                <h2 class="nomargin"><span class="highlight">{{ routine.name }}</span></h2>
+                Difficulty: {{ routine.difficulty }}<br>
+                Description: {{ routine.description }}<br>
+                <br>
+                <button onclick="window.open('{{ url_for('showRoutineSet', user_id=user_id, routine_id=routine.id) }}', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=200,left=500,width=880,height=610')">View set details</button>
+            </div>            
+        <div>
+            <form id="assign_routine" action="{{ url_for('assignRoutineToTrainees', user_id=user_id, routine_id=routine.id) }}" method="post">
+                {% for trainee in trainees %}
+                <div class="card-container">
+                    <div class="v-checkbox">
+                        <input type="checkbox" name="trainee" value="{{ trainee.id }}">
+                    </div>
+                    <div class="profile-image-container">
+                        <img class="profile-image" src="{{ trainee.user.image }}">
+                    </div>
+                    <div class="profile-info">
+                        <ul class="none">
+                            <li><h2 class="nomargin"><span class="highlight">{{ trainee.user.name }}</span></h2></li>
+                            <li>Trainee id: {{ trainee.id }}</li>
+                            <li>Goals: {{ trainee.goal }}</li>
+                        </ul>
+                    </div>
+                </div>
+                {% endfor %}                
+                <div>
+                    <input type="submit" value="Assign">
+                    <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showTrainerRoutines', user_id=user_id) }}&quot">
+                </div>
+            </form>
+        </div>           
+    </section>
+{% endblock %}

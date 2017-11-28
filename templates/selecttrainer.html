@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "traineeheader.html" %}
+    
+    <section id="main_container">
+        <div id="page_title" class="container">
+            <h2>Trainers:</h2>
+        </div>
+        <div>
+            {% for trainer in trainers %}
+                <div class="profile-container">
+                    <div>
+                        {% if trainer.user.image == "" %}
+                            <img class="profile-image" src="/static/images/profile.png">
+                        {% else %}
+                            <img class="profile-image" src="{{ trainer.user.image }}">
+                        {% endif %}
+                        <br>
+                        <div>
+                            <form id="trainer_{{ trainer.id }}" action="{{ url_for('selectTrainer', user_id=user_id) }}" method="post">
+                                <input type="text" name="trainer_id" value="{{ trainer.id }}" style="display: none">
+                                <input class="select-trainer-button" type="submit" value="Select this trainer">
+                            </form>
+                        </div>
+                    </div>
+                    <div>
+                        <ul>
+                            <li>Name: {{ trainer.user.name }}</li>
+                            <li>Years of experience: {{ trainer.years_experience }}</li>
+                            <li>Home gym: {{ trainer.gym }}</li>
+                            <li>Education: {{ trainer.education }}</li>
+                            <li>Specialization: {{ trainer.specialization }}</li>
+                            <li>Background: {{trainer.background }}</li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>           
+    </section>
+{% endblock %}

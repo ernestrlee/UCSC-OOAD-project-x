@@ -1,0 +1,19 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}
+    <section id="main_container">
+        <div id="page_title" class="container-spread">
+            <div>
+                <h2>Delete Exercise:</h2>
+            </div>
+        </div>
+        <div class="card-container">
+            <form id="delete_form" action="{{ url_for('deleteExercise', user_id=user_id, exercise_id=exercise_id) }}" method="post">
+                <h2>Delete Exercise</h2>
+                <h3>Are you sure you wish to delete the exercise "{{ exercise.name }}"?</h3>
+                <input type="submit" value="Delete">
+                <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showExercises', user_id=user_id) }}&quot">
+            </form>                           
+        </div>           
+    </section>
+{% endblock %}

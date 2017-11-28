@@ -1,0 +1,14 @@
+<header class="container-spread">
+    <div>
+        <h1 class="title">Personal Trainer App</h1>
+        <h2>Logged in as trainee: <span class="highlight">{{user.name}}</span></h2>
+    </div>
+    <div id="nav_button">
+        <button onclick="location.href=&quot{{ url_for('showTraineeHomepage', user_id=user_id) }}&quot">Home</button>
+        <button onclick="location.href=&quot{{ url_for('showPerformance', user_id=user_id) }}&quot">View Performance</button>
+        <button onclick="location.href=&quot{{ url_for('showTraineeRoutines', user_id=user_id) }}&quot">View Routines</button>
+        <button onclick="location.href=&quot{{ url_for('editTrainee', user_id=user_id) }}&quot">Edit Profile</button>
+        <button onclick="location.href=&quot{{ url_for('showHome') }}&quot">Log off</button>
+    </div>
+</header>
+{% include "flashmessage.html" %}    

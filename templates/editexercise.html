@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}    
+    <section id="main_container">
+        <div id="page_title">
+            <h2>Edit an exercise:</h2>
+        </div>
+        <div class="form-section">
+            <form id="edit_exercise" action="{{ url_for('editExercise', user_id=user_id, exercise_id=exercise_id) }}" method="post">
+                <h3>Name:</h3>
+                <input class="reg-input" type="text" size="50" name="name" placeholder="{{ exercise.name }}"><br>
+                <h3>Description:</h3>
+                <textarea class="reg-textarea" name="desc" placeholder="Enter an exercise description">{{ exercise.description }}</textarea><br>
+                <h3>Exercise Image URL:</h3>
+                <input class="reg-input" type="text" size="50" name="image" placeholder="{{ exercise.imageurl }}"><br>
+                <h3>Exercise Video URL:</h3>
+                <input class="reg-input" type="text" size="50" name="video" placeholder="{{ exercise.videourl }}"><br>
+                <h3>Body parts worked:</h3>
+                {% for muscle_group in muscle_groups %} 
+                    {% if muscle_group in exercise.body_parts %}
+                    <input type="checkbox" name="muscle_group" value="{{ muscle_group }}" checked="checked">{{ muscle_group }}<br>
+                    {% else %}
+                    <input type="checkbox" name="muscle_group" value="{{ muscle_group }}">{{ muscle_group }}<br>
+                    {% endif %}
+                {% endfor %}
+                <h3>Type of exercise:</h3>
+                {% for exercise_type in exercise_types %}
+                    {% if exercise_type in exercise.type %}
+                    <input type="checkbox" name="exercise_type" value="{{ exercise_type }}" checked="checked">{{ exercise_type }}<br>
+                    {% else %}
+                    <input type="checkbox" name="exercise_type" value="{{ exercise_type }}">{{ exercise_type }}<br>
+                    {% endif %}
+                {% endfor %}
+                <br>            
+                <input type="submit" value="Save">
+                <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showExercises', user_id=user_id) }}&quot">
+            </form>
+        </div>
+    </section>
+{% endblock %}

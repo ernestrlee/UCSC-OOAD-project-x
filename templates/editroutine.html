@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}    
+    <section id="main_container">
+        <div id="page_title">
+            <h2>Edit a routine:</h2>
+        </div>
+        <div class="form-section">
+            <form id="edit_routine" action="{{ url_for('editRoutine', user_id=user_id, routine_id=routine_id) }}" method="post">
+                <h3>Routine Name:</h3>
+                <input class="reg-input" type="text" size="50" name="name" placeholder="{{ routine.name }}"><br>
+                <h3>Difficulty:</h3>
+                <select name="difficulty">
+                    <option value="">Select a difficulty</option>
+                    {% for d in difficulty %}
+                        {% if d == routine.difficulty %}
+                        <option value="{{ d }}" selected>{{ d }}</option>
+                        {% else %}
+                        <option value="{{ d }}">{{ d }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <h3>Description:</h3>
+                <textarea class="reg-textarea" name="desc" placeholder="Enter a description for the routine">{{ routine.description }}</textarea><br>
+                <br>
+                
+                {% for i in range(1,6) %}
+                <div class="table-small">
+                    <div class="add-sets">
+                        <h3><span class="highlight">Set<br>{{ i }}</span></h3>
+                    </div>
+                    <div class="add-exercise">
+                        <h3>Exercise:</h3>
+                        <select name="exercise{{ i }}">
+                            <option value="">Select an exercise</option>
+                            {% for exercise in exercises %}
+                                {% if exercise.id == sets[(i - 1)].exercise_id %}
+                                <option value="{{ exercise.id }}" selected>{{ exercise.name }}</option>
+                                {% else %}
+                                <option value="{{ exercise.id }}">{{ exercise.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="add-reps">
+                        <h3># of reps:</h3>
+                        <input class="rep-input" type="text" size="10" name="rep{{ i }}" placeholder="{{ sets[(i-1)].repetitions }}"><br>
+                    </div>
+                </div>
+                {% endfor %}
+                <br>
+                <input type="submit" value="Save">
+                <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showTrainerRoutines', user_id=user_id) }}&quot">
+            </form>
+        </div>
+    </section>
+{% endblock %}

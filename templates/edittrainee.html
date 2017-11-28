@@ -1,0 +1,30 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "traineeheader.html" %}    
+    <section id="main_container">
+        <div id="page_title">
+            Edit trainee profile
+        </div>
+        <div class="form-section">
+            <form id="edit_trainee_form" action="{{ url_for('editTrainee', user_id=user_id) }}" method="post">
+                <h3>Name:</h3>
+                <input class="reg-input" type="text" size="50" name="name" placeholder="{{ user.name }}"><br>
+                <h3>Email address:</h3>
+                <input class="reg-input" type="text" size="50" name="email" placeholder="{{ user.email }}"><br>
+                <h3>Password:</h3>
+                <input class="reg-input" type="password" size="50" name="password" placeholder="{{ user.password }}"><br>
+                <h3>Birthdate:</h3>
+                <input type="text" size="10" name="birthdate" placeholder="{{ user.birthdate }}"><br>
+                <h3>Image:</h3>
+                <input class="reg-input" type="text" size="50" name="image" placeholder="{{ user.image }}"><br>
+                <br>
+                <h3>Goal:</h3>
+                <input class="reg-input" type="text" size="50" name="goal" placeholder="{{ trainee.goal }}"><br>
+                <br>
+                <br> 
+                <input type="submit" value="Save">
+                <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showTraineeHomepage', user_id=user_id) }}&quot">
+            </form>
+        </div>
+    </section>
+{% endblock %}

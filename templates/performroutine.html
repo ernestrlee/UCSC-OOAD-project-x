@@ -1,0 +1,56 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "traineeheader.html" %}
+    <section id="main_container">
+        <div id="page_title" class="container-spread">
+            <div>
+                <h2>Perform Routine: <span class="highlight">{{ routine.name }}</span></h2>
+            </div>
+        </div>
+        <div>
+            Difficulty: {{ routine.difficulty }}<br>
+            Description: {{ routine.description }}
+        </div>
+        <form id="perform_routine" action="{{ url_for('performRoutine', user_id=user_id, routine_id=routine.id) }}" method="post">
+            {% for set in sets %}
+            {% if set.exercise.name and set.repetitions %}
+            <div class="table">
+                <div class="sets">
+                    Set<br>
+                    {{ set.order }}
+                </div>
+                <div class="exercise">
+                    <span class="highlight">{{ set.exercise.name }}</span><br>
+                    <input type="button" value="View details" onclick="window.open('{{ url_for('showExerciseDetail', exercise_id=set.exercise.id) }}', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=200,left=500,width=1000,height=500')">
+                </div>
+                <div class="reps">
+                    # of Reps<br>
+                    {{ set.repetitions }}
+                </div> 
+                <div class="details">
+                    Reps Completed<br>
+                    <input type="text" name="completed{{ set.order }}" placeholder="Enter # reps completed">
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            <div class="review">
+                Routine Comments:<br>
+                <textarea class="reg-textarea" name="comments"></textarea><br>
+                Rating:<br>
+                <select class="reg-input" name="rating">
+                    <option value="">Select a rating</option>
+                    <option value="5">5 (Excellent)</option>
+                    <option value="4">4 (Good)</option>
+                    <option value="3">3 (Okay)</option>
+                    <option value="2">2 (Below average)</option>
+                    <option value="1">1 (Needs improvement)</option>
+                </select>
+            </div>
+            <div class="review-buttons">
+                <input type="submit" value="Complete Routine">
+                <input type="button" value="Cancel Routine" style="float:right;" onclick="location.href=&quot{{ url_for('showTraineeRoutines', user_id=user_id) }}&quot">
+            </div>
+        </form>
+    </section>
+{% endblock %}

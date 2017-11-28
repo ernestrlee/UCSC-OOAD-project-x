@@ -1,0 +1,28 @@
+{% extends "main.html" %}
+{% block content %}
+    <section id="main_container">
+        <div id="page_title" class="container-spread">
+            <div>
+                <h2>Exercise:</h2>
+            </div>
+        </div>
+        <div class="card-container">
+            <div class="exercise-image-container">
+                <img class="exercise-image" src="{{ exercise.imageurl }}">
+                {% if exercise.videourl %}
+                <div>
+                    <button class="video-button" onclick="window.open('{{ exercise.videourl }}', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=200,left=500,width=880,height=610')">View video</button>
+                </div>
+                {% endif %}
+            </div>
+            <div class="exercise-info">
+                <h2 class="subtitle"><span class="highlight">{{ exercise.name }}</span></h2>
+                <ul>
+                    <li><strong>Description:</strong> {{ exercise.description }}</li>
+                    <li><strong>Body parts worked:</strong> {{ exercise.body_parts }}</li>
+                    <li><strong>Exercise type:</strong> {{ exercise.type }}</li>
+                </ul>
+            </div>
+        </div>           
+    </section>
+{% endblock %}

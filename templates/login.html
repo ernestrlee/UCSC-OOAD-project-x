@@ -1,0 +1,64 @@
+{% extends "main.html" %}
+{% block content %}
+    <header class="container-spread">
+        <div>
+            <h1 class="title-main">Personal Trainer App</h1>            
+        </div>
+        <div id="nav_button">
+            <button onclick="location.href=&quot{{ url_for('showHome') }}&quot">Home</button>
+        </div>
+    </header>
+    
+    <section>
+        <div id="main_container">
+            <div id="page_title">
+                Log in
+            </div>
+            <div id="login_section">
+                <form id="login_form" action="{{ url_for('showLogin') }}" method="post">
+                    <h3>Log in as:</h3>
+                    <select class="login-select" name="role" onchange="toggleList(this.value)">
+                        <option value="trainee" selected>Trainee</option>
+                        <option value="trainer">Trainer</option>
+                    </select>
+                    <br>
+                    <h3>Email:</h3>
+                                        
+                    <div id="traineeList">
+                        <select name="traineeemail">
+                        {% for trainee in trainees %}
+                            <option value="{{ trainee.user.email }}">{{ trainee.user.email }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div id="trainerList" style="display: none">
+                        <select name="traineremail">
+                        {% for trainer in trainers %}
+                            <option value="{{ trainer.user.email }}">{{ trainer.user.email }}</option>
+                        {% endfor %}
+                        </select>
+                    </div>
+                    <script>
+                        function toggleList(v) {
+                            if (v == "trainer"){
+                                document.getElementById("traineeList").style.display = "none";
+                                document.getElementById("trainerList").style.display = "block";
+                            }
+                            else {
+                                document.getElementById("trainerList").style.display = "none";
+                                document.getElementById("traineeList").style.display = "block";
+                            }                        
+                        }
+                    </script>
+                    
+                    <br>    
+                    <br>
+                    <br>
+                    <input type="submit" value="Log in">
+                    <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showHome') }}&quot">
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}

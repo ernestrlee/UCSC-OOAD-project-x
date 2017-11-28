@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}
+    <section id="main_container">
+        <div id="page_title" class="container-spread">
+            <div>
+                <h2>Routine: <span class="highlight">{{ routine.name }}</span></h2>
+            </div>
+            <div>
+                <button onclick="location.href=&quot{{ url_for('assignRoutineToTrainees', user_id=user_id, routine_id=routine.id) }}&quot">Assign Routine</button>
+                {% if trainer.id == routine.creator_id %}
+                <button onclick="location.href=&quot{{ url_for('editRoutine', routine_id=routine.id, user_id=user_id) }}&quot">Edit</button>
+                <button onclick="location.href=&quot{{ url_for('deleteRoutine', routine_id=routine.id, user_id=user_id) }}&quot">Delete</button>
+                {% endif %}
+            </div>            
+        </div>
+        <div>
+            <h2>Difficulty: {{ routine.difficulty }}</h2>
+        </div>
+        <div class="routine-desc">
+            Description: {{ routine.description }}
+        </div>
+        {% for set in sets %}
+        {% if set.exercise.name and set.repetitions %}
+        <div class="table">
+            <div class="sets">
+                Set<br>
+                {{ set.order }}
+            </div>
+            <div class="exercise">
+                {{ set.exercise.name }}
+            </div>
+            <div class="reps">
+                REPS<br>
+                {{ set.repetitions }}
+            </div> 
+            <div class="details">
+                <button onclick="window.open('{{ url_for('showExerciseDetail', exercise_id=set.exercise.id) }}', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=200,left=500,width=1000,height=500')">View details</button>
+            </div>      
+        </div>
+        {% endif %}
+        {% endfor %}        
+    </section>
+{% endblock %}

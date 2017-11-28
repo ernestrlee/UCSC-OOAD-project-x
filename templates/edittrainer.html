@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}    
+    <section id="main_container">
+        <div id="page_title">
+            Edit trainer profile
+        </div>
+        <div class="form-section">
+            <form id="edit_trainer_form" action="{{ url_for('editTrainer', user_id=user_id) }}" method="post">
+                <h3>Name:</h3>
+                <input class="reg-input" type="text" size="50" name="name" placeholder="{{ user.name }}"><br>
+                <h3>Email address:</h3>
+                <input class="reg-input" type="text" size="50" name="email" placeholder="{{ user.email }}"><br>
+                <h3>Password:</h3>
+                <input class="reg-input" type="password" size="50" name="password" placeholder="{{ user.password }}"><br>
+                <h3>Birthdate:</h3>
+                <input type="text" size="10" name="birthdate" placeholder="{{ user.birthdate }}"><br>
+                <h3>Profile Image URL:</h3>
+                <input class="reg-input" type="text" size="50" name="image" placeholder="{{ user.image }}"><br>
+                <h3>Years of experience:</h3>
+                <input type="text" size="5" name="years" placeholder="{{ trainer.years_experience }}"><br>
+                <h3>Home Gym:</h3>
+                <input class="reg-input" type="text" size="50" name="gym" placeholder="{{ trainer.gym }}"><br>
+                <h3>Education:</h3>
+                <input class="reg-input" type="text" size="50" name="education" placeholder="{{ trainer.education }}"><br>
+                <h3>Specialization:</h3>
+                <input class="reg-input" type="text" size="50" name="specialization" placeholder="{{ trainer.specialization }}"><br>
+                <h3>Background:</h3>
+                <textarea class="reg-textarea" name="background" placeholder="Enter background information">{{ trainer.background }}</textarea><br>
+                <br>
+                <br> 
+                <input type="submit" value="Save">
+                <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showTrainerHomepage', user_id=user_id) }}&quot">
+            </form>
+        </div>
+    </section>
+{% endblock %}

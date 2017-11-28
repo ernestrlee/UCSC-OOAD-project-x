@@ -1,0 +1,50 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "traineeheader.html" %}
+<section id="main_container">
+    <div id="page_title">
+        <h2>Trainee Performance: <span class="highlight">{{ trainee.user.name }}</span></h2>
+    </div>
+    {% if performance %}
+        {% for p in performance %}
+        <div class="card-container-block">
+            Routine name: <span class="highlight">{{ p.routine_name }}</span><br>
+            Date performed: {{ p.performed_date.strftime("%m/%d/%y, %I:%M%p") }}<br>
+            My rating: {{ p.rating }}<br>
+            Comments: {{ p.comments }}<br>
+            <br>
+            <div>
+            Details:
+            {% for e in exercises %}
+                {%if e.performance_id == p.id %}
+                <div class="table">
+                    <div class="mini-sets">
+                        Set<br>
+                        {{ e.order }}
+                    </div>
+                    <div class="mini-exercise">
+                        {{ e.exercise_name }}
+                    </div>
+                    <div class="mini-reps">
+                        Reps assigned:<br> {{ e.assigned_reps }}
+                    </div>
+                    <div class="mini-reps">
+                        Reps completed:<br> {{ e.completed_reps }}
+                    </div>
+                    <div class="mini-reps">
+                        {{ ((e.completed_reps / e.assigned_reps)*100)|round(1) }} %<br>
+                        Completed
+                    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div>
+            No peformance records found for {{ trainee.user.name }}.
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

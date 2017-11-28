@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}
+    <section id="main_container">
+        <div id="page_title" class="container-spread">
+            <div>
+                <h2>Routines:</h2>
+            </div>
+            <div id="back_button">
+                <button onclick="location.href=&quot{{ url_for('addRoutine', user_id=user_id) }}&quot">Add routine</button>
+            </div>
+        </div>
+        <div>
+            {% for routine in routines %}
+            <div class="card-container-block">
+                <h2>Name: <span class="highlight">{{ routine.name }}</span></h2>
+                <h3 class="created-by">Created by: {{ routine.trainer.user.name }}</h3>
+                
+                <ul>
+                    <li>Description: {{ routine.description }}</li>
+                    <li>Difficulty: {{ routine.difficulty }}</li>
+                </ul>
+                <div class="routine-card-buttons">                
+                    <button onclick="location.href=&quot{{ url_for('showRoutineSet', user_id=user_id, routine_id=routine.id) }}&quot">View Routine</button>
+                    <button onclick="location.href=&quot{{ url_for('assignRoutineToTrainees', user_id=user_id, routine_id=routine.id) }}&quot">Assign Routine</button>
+                    {% if trainer.id == routine.creator_id %}
+                    <button onclick="location.href=&quot{{ url_for('editRoutine', routine_id=routine.id, user_id=user_id) }}&quot">Edit</button>
+                    <button onclick="location.href=&quot{{ url_for('deleteRoutine', routine_id=routine.id, user_id=user_id) }}&quot">Delete</button>
+                    {% endif %}
+                </div>                
+            </div>
+            {% endfor %}            
+        </div>           
+    </section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "main.html" %}
+{% block content %}
+    <header class="container">
+        <h1 class="title">Personal Trainer App</h1>
+        <div id="login">
+            <button onclick="location.href=&quot{{ url_for('showLogin') }}&quot">Log in</button>
+        </div>
+    </header>
+    
+    <section id="main_container" class="container">
+        <div id="page_title">
+            <h2>Trainers:</h2>
+            <input type="button" value="Go Back" onclick="location.href=&quot{{ url_for('showTraineeHomepage', user_id=user_id) }}&quot">
+        </div>
+        <div>
+            {% for trainer in trainers %}
+                <div>
+                    <img src="{{ trainer.image }}">
+                    <ul>
+                        <li>Name: {{ trainer.user.name }}</li>
+                        <li>Years of experience: {{ trainer.years_experience }}</li>
+                        <li>Home gym: {{ trainer.gym }}</li>
+                        <li>Education: {{ trainer.education }}</li>
+                        <li>Specialization: {{ trainer.specialization }}</li>
+                        <li>Background: {{trainer.background }}</li>
+                    </ul>
+                </div>
+            {% endfor %}
+        </div>           
+    </section>
+{% endblock %}

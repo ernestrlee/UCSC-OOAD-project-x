@@ -1,0 +1,40 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}
+    
+    <section id="main_container">
+        <div id="page_title">
+            Trainer: <span class="highlight">{{user.name}}</span>
+        </div>
+        <div class="trainer-header">            
+            <img class="profile-image" src="{{ user.image }}" alt="trainer profile image">
+            <br>
+        </div>
+        <div>
+            <br>
+            <h2>My Trainees:</h2>
+            <ul>
+                {% if trainees %}
+                    {% for trainee in trainees %}
+                    <li>{{ trainee.user.name }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li>Currently no trainees assigned</li>
+                {% endif %}
+            </ul>
+        </div>
+        <div>
+            <br>
+            <h2>My recently added routines:</h2>
+            <ul>
+                {% if routines %}
+                    {% for routine in routines %}
+                    <li>{{ routine.name }}</li>
+                    {% endfor %}
+                {% else %}
+                    <li> Currently no routines created</li>
+                {% endif %}
+            </ul>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,48 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}    
+    <section id="main_container">
+        <div id="page_title">
+            <h2>Add a routine:</h2>
+        </div>
+        <div class="form-section">
+            <form id="add_routine" action="{{ url_for('addRoutine', user_id=user_id) }}" method="post">
+                <h3>Routine Name:</h3>
+                <input class="reg-input" type="text" size="50" name="name" placeholder="Enter the name of the routine"><br>
+                <h3>Difficulty:</h3>
+                <select name="difficulty">
+                    <option value="">Select a difficulty</option>
+                    {% for d in difficulty %}
+                    <option value="{{ d }}">{{ d }}</option>
+                    {% endfor %}
+                </select>
+                <h3>Description:</h3>
+                <textarea class="reg-textarea" name="desc" placeholder="Enter a description for the routine"></textarea><br>
+                <br>
+                {% for i in range(1,6) %}
+                <div class="table-small">
+                    <div class="add-sets">
+                        <h3><span class="highlight">Set<br>{{ i }}</span></h3>
+                    </div>
+                    <div class="add-exercise">
+                        <h3>Exercise:</h3>
+                        <select name="exercise{{ i }}">
+                            <option value="">Select an exercise</option>
+                            {% for exercise in exercises %}
+                            <option value="{{ exercise.id }}">{{ exercise.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="add-reps">
+                        <h3># of reps:</h3>
+                        <input class="rep-input" type="text" size="10" name="rep{{ i }}" placeholder="Enter # of reps"><br>
+                    </div>
+                </div>
+                {% endfor %}
+                <br>
+                <input type="submit" value="Save">
+                <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showExercises', user_id=user_id) }}&quot">
+            </form>
+        </div>
+    </section>
+{% endblock %}

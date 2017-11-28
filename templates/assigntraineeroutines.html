@@ -1,0 +1,34 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}
+    <section id="main_container">
+        <div id="page_title" class="container-spread">
+            <div>
+                <h2>Assign routines to trainee:</h2>
+            </div>
+        </div>
+        <div>
+            <h2>Trainee name: <span class="highlight">{{ trainee.user.name }}</span></h2>
+            
+            <div>
+                <form id="assign_routine" action="{{ url_for('assignTraineeRoutines', user_id=user_id, trainee_id=trainee.id) }}" method="post">
+                    <div class="card-container-block">
+                    {% for routine in routines %}
+                        <ul class="none">
+                            {% if routine.id in current_routines %}
+                            <li><input type="checkbox" name="routine" value="{{ routine.id }}" checked="checked">{{ routine.name }}</li>
+                            {% else %}
+                            <li><input type="checkbox" name="routine" value="{{ routine.id }}">{{ routine.name }}</li>
+                            {% endif %}
+                        </ul>
+                    {% endfor %}
+                    </div>
+                    <div>
+                        <input type="submit" value="Assign">
+                        <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showTrainees', user_id=user_id) }}&quot">
+                    </div>  
+                </form>
+            </div>            
+        </div>           
+    </section>
+{% endblock %}

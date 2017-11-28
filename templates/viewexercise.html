@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}    
+    <section id="main_container">
+        <div id="page_title">
+            <h2>Exercise:</h2>
+            <input type="button" value="Go Back" onclick="location.href=&quot{{ url_for('showTrainerHomepage', user_id=user_id) }}&quot">
+        </div>
+        
+        {% for exercise in exercises %}
+        <div class="container">
+            <div>
+                <img class="exercise-image" src="{{ exercise.imageurl }}">
+                <ul>
+                    <li>Name: <span class="highlight">{{ exercise.name }}</span></li>
+                    <li>Description: {{ exercise.description }}</li>
+                    <li>Body parts worked: {{ exercise.body_parts }}</li>
+                    <li>Exercise type: {{ exercise.type }}</li>
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+                   
+    </section>
+{% endblock %}

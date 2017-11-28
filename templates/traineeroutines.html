@@ -1,0 +1,25 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "traineeheader.html" %}
+    <section id="main_container">
+        <div id="page_title" class="container-spread">
+            <div>
+                Routines:
+            </div>
+        </div>
+        <div>
+            {% for routine in routinelist %}
+            <div class="card-container-block">
+                <h2><span class="highlight">{{ routine.routine.name }}</span></h2>
+                <ul class="none">
+                    <li>Description: {{ routine.routine.description }}</li>
+                    <li>Difficulty: {{ routine.routine.difficulty }}</li>
+                </ul>
+                <br>                
+                <button onclick="window.open('{{ url_for('showRoutineDetail', routine_id=routine.routine.id) }}', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=200,left=500,width=880,height=610')">View Routine</button>
+                <button onclick="location.href=&quot{{ url_for('performRoutine', user_id=user_id, routine_id=routine.routine.id) }}&quot">Start Routine</button>
+            </div>
+            {% endfor %}            
+        </div>           
+    </section>
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "trainerheader.html" %}
+    <section id="main_container">
+        <div id="page_title">
+            <h2>Trainees:</h2>
+        </div>
+        {% if trainees %}
+            {% for trainee in trainees %}
+            <div class="card-container">
+                <div class="profile-image-container">
+                    <img class="profile-image" src="{{ trainee.user.image }}">
+                </div>
+                <div class="profile-info">
+                    <ul class="none">
+                        <li><h2 class="nomargin"><span class="highlight">{{ trainee.user.name }}</span></h2></li>
+                        <li>Trainee id: {{ trainee.id }}</li>
+                        <li>Goals: {{ trainee.goal }}</li>
+                    </ul>
+                    <br>
+                    <div>
+                        <button class="card-button" onclick="location.href=&quot{{ url_for('assignTraineeRoutines', user_id=user_id, trainee_id=trainee.id) }}&quot">Assign a routine</button>
+                        <button class="card-button" onclick="location.href=&quot{{ url_for('showTraineePerformance', user_id=user_id, trainee_id=trainee.id) }}&quot">View Performance</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div>No trainees currently assigned</div>
+        {% endif %}
+    </section>
+{% endblock %}

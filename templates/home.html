@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+{% block content %}
+    <header class="container-spread">
+        <div>
+            <h1 class="title-main">Personal Trainer App</h1>            
+        </div>
+        <div id="nav_button">
+                <button onclick="location.href=&quot{{ url_for('showLogin') }}&quot">Log in</button>
+        </div>
+    </header>
+    <section>
+        <div id="welcome_text">
+            Take your personal training<br>
+            to the next level
+        </div>
+        <div id="trainee_reg">
+            <button class="reg-button" onclick="location.href=&quot{{ url_for('showRegistration', role='trainee') }}&quot">Register as a new Trainee</button>
+        </div>
+        <div id="trainer_reg">
+            <button class="reg-button" onclick="location.href=&quot{{ url_for('showRegistration', role='trainer') }}&quot">Register as a new Trainer</button>
+        </div>
+    </section>
+{% endblock %}

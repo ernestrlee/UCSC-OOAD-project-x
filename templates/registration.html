@@ -1,0 +1,37 @@
+{% extends "main.html" %}
+{% block content %}
+    <header class="container-spread">
+        <div>
+            <h1 class="title-main">Personal Trainer App</h1>            
+        </div>
+        <div id="nav_button">
+            <button onclick="location.href=&quot{{ url_for('showLogin') }}&quot">Log in</button>
+        </div>
+    </header>
+    
+    <section id="main_container">
+        <div id="page_title">
+            Trainee Registration
+        </div>
+        <div class="form-section">
+            <form id="registration_form" action="{{ url_for('showRegistration', role=role) }}" method="post">
+                <h3>Name:</h3>
+                <input class="reg-input" type="text" size="50" name="name" placeholder="Enter first and last name"><br>
+                <h3>Email address:</h3>
+                <input class="reg-input" type="text" size="50" name="email" placeholder="Enter an email address"><br>
+                <h3>Password:</h3>
+                <input class="reg-input" type="password" size="50" name="password" placeholder="Enter a password"><br>
+                <h3>Birthdate:</h3>
+                <input type="text" size="10" name="birthdate" placeholder="MM/DD/YYYY"><br>
+                <h3>Profile Image URL:</h3>
+                <input class="reg-input" type="text" size="50" name="image" placeholder="Enter a URL for your profile picture"><br>
+                <h3>Goal:</h3>
+                <input class="reg-input" type="text" size="50" name="goal" placeholder="Enter a training goal"><br>
+                <br>
+                <br>            
+                <input type="submit" value="Register">
+                <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showHome') }}&quot">
+            </form>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "traineeheader.html" %}    
+    <section id="main_container">        
+        <div id="page_title">
+            Trainee: <span class="highlight">{{ user.name }}</span>
+        </div>
+        <div class="trainee-goals">
+            <h2>
+                My training goals:
+            </h2>
+            <p class="trainee-goals">
+                {{ trainee.goal }}
+            </p>
+        </div>
+        <div class="card-container">
+            <div class="image-container">
+                {% if trainee.trainer_id %}
+                <img class="profile-image" src="{{ trainee.trainer.user.image }}" alt="trainee profile image">
+                {% else %}
+                <img class="profile-image" src="/static/images/profile.png" alt="trainee profile image">
+                {% endif %}
+            </div>
+            <div class="profile-info">
+                {% if trainee.trainer_id %}
+                <div class="trainer-select">
+                    My trainer is : {{ trainee.trainer.user.name }}<br>
+                    <br>
+                    <button onclick="location.href=&quot{{ url_for('selectTrainer', user_id=user_id) }}&quot">Select a different trainer</button>
+                </div>
+                {% else %}
+                <div class="trainer-select">
+                    Please select a trainer.<br>
+                    <br>
+                    <button onclick="location.href=&quot{{ url_for('selectTrainer', user_id=user_id) }}&quot">Select a trainer</button>
+                </div>
+                {% endif %}            
+            </div>    
+        </div>
+        <div>
+            <h2>Recently Assigned Routines</h2>
+            {% for routine in routine_list %}
+            <ul>
+                <li>{{ routine.routine.name }}</li>
+            </ul>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
