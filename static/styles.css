@@ -1,0 +1,439 @@
+/*General styles for all layouts unless overridden by media quiries, mainly for screen widths under 600px*/
+
+*{
+    box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: "Roboto", sans-serif;
+    background-color: #000;
+	background-image: url("/static/images/bicep.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+header {
+    background-color: skyblue;
+    background: linear-gradient(to right, rgba(135,206,235,0.5), rgba(0,0,0,0.9));
+    opacity: 0.9;
+    padding: 0 20px;
+}
+
+form {
+    border: none;
+}
+
+button {
+    height: 40px;
+    padding: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+textarea {
+    font-family: "Roboto", sans-serif;
+    font-size: 1em;
+    padding: 5px;
+}
+
+input, select {
+    min-height: 40px;
+    padding: 5px;
+}
+
+input[type=submit], input[type=button] {
+    border: none;
+    cursor: pointer;
+}
+
+input[type=checkbox]{
+    transform: scale(1.5);
+    vertical-align: middle;
+    margin: 0 20px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Teko', sans-serif;
+}
+
+h2, h3{
+    margin: 0;
+}
+
+ul.none {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.clearfix {
+	overflow: auto;
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.container-spread {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#main_container {
+    margin: 25px auto;
+    padding: 20px 40px;
+    color: #ddd;
+    background: radial-gradient(rgba(100,100,100,0.8), rgba(0,0,0,0.5));    
+    width: 95%;
+    min-height: 700px;
+}
+
+.border-container{
+    width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+    padding: 10px;
+    border: 1px solid #ccc;    
+}
+
+.card-container {
+	width: 100%;
+	display: flex;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: rgba(0,0,0,0.7);
+}
+
+.card-container-block {
+	width: 100%;
+	display: block;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: rgba(0,0,0,0.7);
+}
+
+.exercise-image-container {
+    width: 300px;
+}
+
+.profile-image-container {
+    width: 120px;
+}
+
+.exercise-info, .profile-info {
+    margin: 0 15px;
+}
+
+.created-by {
+    margin: 0px;
+}
+
+.table {
+    width: 100%;
+	display: table;
+    background: rgba(0,0,0,0.7);
+}
+
+.table-small {
+    width: 40%;
+    display: table;
+    background: rgba(0,0,0,0.7);
+}
+
+.profile-container {
+    width: 100%;
+	display: flex;
+    margin: 15px 0;
+    border: 1px solid #ddd;
+    padding: 10px;
+    background: rgba(0,0,0,0.7);
+}
+
+.trainee-goals h2, p{
+    display: inline;
+}
+
+.trainer-select {
+    margin: 10px 0;
+}
+
+
+
+.title-main {
+    font-family: 'Teko', sans-serif;
+    font-size: 50px;
+    color: white;
+    margin: 10px 0 0 0;
+}
+
+.title {
+    font-family: 'Teko', sans-serif;
+    font-size: 50px;
+    height: 50px;
+    color: white;
+    margin: 10px 0 0 0;
+}
+
+#page_title {
+    display: table;
+    font-family: 'Teko', sans-serif;
+    font-size: 30px;
+    color: #ddd;
+    padding: 5px 0;
+}
+
+.subtitle {
+    font-family: 'Teko', sans-serif;
+    font-size: 30px;
+    color: white;
+    margin: 10px 0;
+}
+
+#login {
+    text-align: right;
+    align-self: center;
+}
+
+#nav_button, #back_button {
+    display: block;
+    height: 48px;
+    line-height: 48px;
+    align-self: center;
+}
+
+.routine-card-buttons {
+    display: block;
+    height: 48px;
+    line-height: 48px;
+    margin: 0 40px;
+}
+
+.exercise-card-buttons {
+    display: block;
+    height: 48px;
+    line-height: 48px;
+    margin: 0 40px;
+}
+
+.nomargin {
+    margin: 0;
+}
+
+.v-checkbox {
+    height: 120px;
+    line-height: 120px;
+}
+
+.review {
+    margin: 10px 0;
+}
+
+.review-buttons {
+    margin: 0;
+}
+
+#welcome_text {
+    margin: 50px 0 50px 0;
+    font-family: 'Teko', sans-serif;
+    font-size: 100px;
+    text-align: center;
+    color: #dde043;
+    opacity: 0.85;
+    text-shadow: 5px 5px #111;
+}
+
+#trainee_reg, #trainer_reg {
+    text-align: center;
+    margin: 15px 0 15px 0;
+}
+
+.reg-button {
+    min-width: 280px;
+    font-size: 18px;
+    background: #4974f1;
+    color: #eee;
+    border: none;
+}
+
+
+#login_section {    
+    text-align: left;
+    min-width: 250px;
+    padding: 30px;
+    border: 1px solid black;
+    color: black;
+    background: white;
+}
+
+.login-select {
+    min-width: 200px;
+}
+
+
+
+.form-section {
+    text-align: left;
+}
+
+.form-section h3 {
+    margin: 5px 0;
+    color: #ddd;
+}
+
+.form-button {
+    text-align:left;
+}
+
+.reg-input {
+    width: 400px;
+}
+
+.reg-textarea {
+    width: 400px;
+    height: 200px;
+}
+
+.profile-image{
+    width: 120px;
+    height: 120px; 
+    background: white;
+}
+
+.select-trainer-button {
+    width: 120px;
+    cursor: pointer;
+}
+
+.routine-desc {
+    margin: 5px 0;
+}
+
+.sets, .reps, .details {
+    display: table-cell;
+    text-align: center;
+    font-size: 25px;
+    border: 1px solid #CCC;
+    padding: 5px;
+    width: 10%;
+    vertical-align: middle;
+}
+
+.exercise {
+    display: table-cell;
+    text-align: left;
+    font-size: 25px;
+    border: 1px solid #CCC;
+    padding: 5px;
+    min-width: 40%;
+    vertical-align: middle;
+}
+
+.mini-sets, .mini-reps, .mini-details {
+    display: table-cell;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #CCC;
+    padding: 5px;
+    width: 15%;
+    vertical-align: middle;
+}
+
+.mini-exercise {
+    display: table-cell;
+    text-align: left;
+    font-size: 20px;
+    border: 1px solid #CCC;
+    padding: 5px;
+    min-width: 30%;
+    vertical-align: middle;
+}
+
+.add-sets {
+    display: table-cell;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #CCC;
+    padding: 5px;
+    width: 20%;
+    vertical-align: middle;
+}
+
+.add-exercise {
+    display: table-cell;
+    font-size: 20px;
+    border: 1px solid #CCC;
+    padding: 5px;
+    width: 40%;
+    vertical-align: middle;
+}
+
+.add-reps {
+    display: table-cell;
+    text-align: center;
+    font-size: 20px;
+    border: 1px solid #CCC;
+    padding: 5px;
+    width: 30%;
+    vertical-align: middle;
+}
+
+
+.rep-input {
+    text-align: center;
+}
+
+.exercise-image {
+    width: 300px;
+}
+
+.video-button {
+    width: 300px;
+    min-height: 40px;
+    background: #b5d46b;
+}
+
+.highlight {
+    color: #e8ec3c;
+}
+
+#flash_message {
+    margin: 5px auto;
+    color: white;
+    width: 70%;
+}
+
+/*Layouts for screen widths between 600px and 1399px*/
+@media screen and (min-width:600px) and (max-width:1399px) {
+    #main_container {
+        margin: 25px auto;
+        padding: 20px 40px;
+        color: #ddd;
+        background: radial-gradient(rgba(100,100,100,0.8), rgba(0,0,0,0.5));    
+        width: 90%;
+        min-height: 700px;
+    }
+    
+}
+
+/*Layouts for screen widths greater than 1399px*/
+@media screen and (min-width:1400px) {
+    #main_container {
+        margin: 25px auto;
+        padding: 20px 40px;
+        color: #ddd;
+        background: radial-gradient(rgba(100,100,100,0.8), rgba(0,0,0,0.5));    
+        width: 80%;
+        min-height: 700px;
+    }
+    
+}
+
