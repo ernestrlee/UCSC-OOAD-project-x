@@ -8,3 +8,10 @@ This web application is designed to allow a trainee to perform exercise routines
 * loadvalues.py - loads initial values to the database
 * personaltrainer.py - the personal trainer web application
 
+## Notes:
+This app is a proof of concept.  As such certain items should be updated prior to deploying
+* Login system is not fully functional and does not perform any authentication.
+* Images used are for demonstrative purposes only.
+* App is in debug mode
+
+
