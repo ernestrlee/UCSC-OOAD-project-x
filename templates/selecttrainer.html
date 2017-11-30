@@ -1,11 +1,11 @@
 {% extends "main.html" %}
 {% block content %}
 {% include "traineeheader.html" %}
-    
     <section id="main_container">
         <div id="page_title" class="container">
             <h2>Trainers:</h2>
         </div>
+        {% if trainers %}
         <div>
             {% for trainer in trainers %}
                 <div class="profile-container">
@@ -35,6 +35,9 @@
                     </div>
                 </div>
             {% endfor %}
-        </div>           
+        </div>
+        {% else %}
+        <div>There are currently no trainers available</div>
+        {% endif %}
     </section>
 {% endblock %}

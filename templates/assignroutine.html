@@ -17,27 +17,31 @@
             </div>            
         <div>
             <form id="assign_routine" action="{{ url_for('assignRoutineToTrainees', user_id=user_id, routine_id=routine.id) }}" method="post">
-                {% for trainee in trainees %}
-                <div class="card-container">
-                    <div class="v-checkbox">
-                        <input type="checkbox" name="trainee" value="{{ trainee.id }}">
+                {% if trainees %}
+                    {% for trainee in trainees %}
+                    <div class="card-container">
+                        <div class="v-checkbox">
+                            <input type="checkbox" name="trainee" value="{{ trainee.id }}">
+                        </div>
+                        <div class="profile-image-container">
+                            <img class="profile-image" src="{{ trainee.user.image }}">
+                        </div>
+                        <div class="profile-info">
+                            <ul class="none">
+                                <li><h2 class="nomargin"><span class="highlight">{{ trainee.user.name }}</span></h2></li>
+                                <li>Trainee id: {{ trainee.id }}</li>
+                                <li>Goals: {{ trainee.goal }}</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="profile-image-container">
-                        <img class="profile-image" src="{{ trainee.user.image }}">
+                    {% endfor %}                
+                    <div>
+                        <input type="submit" value="Assign">
+                        <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showTrainerRoutines', user_id=user_id) }}&quot">
                     </div>
-                    <div class="profile-info">
-                        <ul class="none">
-                            <li><h2 class="nomargin"><span class="highlight">{{ trainee.user.name }}</span></h2></li>
-                            <li>Trainee id: {{ trainee.id }}</li>
-                            <li>Goals: {{ trainee.goal }}</li>
-                        </ul>
-                    </div>
-                </div>
-                {% endfor %}                
-                <div>
-                    <input type="submit" value="Assign">
-                    <input type="button" value="Cancel" onclick="location.href=&quot{{ url_for('showTrainerRoutines', user_id=user_id) }}&quot">
-                </div>
+                {% else %}
+                    <div>No trainees currently assigned</div>
+                {% endif %}
             </form>
         </div>           
     </section>

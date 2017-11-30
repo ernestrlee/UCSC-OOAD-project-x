@@ -8,7 +8,7 @@
             </div>
             <div>
                 <button onclick="location.href=&quot{{ url_for('assignRoutineToTrainees', user_id=user_id, routine_id=routine.id) }}&quot">Assign Routine</button>
-                {% if trainer.id == routine.creator_id %}
+                {% if user.id == routine.creator_id %}
                 <button onclick="location.href=&quot{{ url_for('editRoutine', routine_id=routine.id, user_id=user_id) }}&quot">Edit</button>
                 <button onclick="location.href=&quot{{ url_for('deleteRoutine', routine_id=routine.id, user_id=user_id) }}&quot">Delete</button>
                 {% endif %}

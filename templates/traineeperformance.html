@@ -1,6 +1,11 @@
 {% extends "main.html" %}
 {% block content %}
-{% include "traineeheader.html" %}
+{% if role == "trainer" %}
+    {% include "trainerheader.html" %}
+{% else %}
+    {% include "traineeheader.html" %}
+{% endif %}
+
 <section id="main_container">
     <div id="page_title">
         <h2>Trainee Performance: <span class="highlight">{{ trainee.user.name }}</span></h2>
