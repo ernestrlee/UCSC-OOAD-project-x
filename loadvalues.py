@@ -1,4 +1,5 @@
 # This file loads data into the database "personaltrainer.db"
+import datetime
 # SQL Alchemy is a Python SQL toolkit
 # Imports / Configuration for sqlalchemy
 from sqlalchemy import create_engine
@@ -23,55 +24,55 @@ session = DBSession()
 
 # Add people to the system, user table
 user1 = User(name="Pete Simons",
-                 email="pete.simons@gg.net",
-                 password="123",
-                 birthdate="03/01/1980",
-                 image="https://i.redd.it/fnf14eb7thsz.gif")
+             email="pete.simons@gg.net",
+             password="123",
+             birthdate="03/01/1980",
+             image="https://i.redd.it/fnf14eb7thsz.gif")
 
 session.add(user1)
 session.commit()
 
 user2 = User(name="Jessica Peterson",
-                 email="j.peterson@ff.net",
-                 password="123",
-                 birthdate="03/01/1990",
-                 image="https://static.comicvine.com/uploads/square_small/11/114183/5147887-margesimpson.png")
+             email="j.peterson@ff.net",
+             password="123",
+             birthdate="03/01/1990",
+             image="https://static.comicvine.com/uploads/square_small/11/114183/5147887-margesimpson.png")
 
 session.add(user2)
 session.commit()
 
 user3 = User(name="John Smith",
-                 email="j.smith@aa.net",
-                 password="123",
-                 birthdate="01/01/2000",
-                 image="https://vignette.wikia.nocookie.net/simpsons/images/6/6d/Abraham_Simpson_I.png/revision/latest?cb=20130913052937")
+             email="j.smith@aa.net",
+             password="123",
+             birthdate="01/01/2000",
+             image="https://vignette.wikia.nocookie.net/simpsons/images/6/6d/Abraham_Simpson_I.png/revision/latest?cb=20130913052937")
 
 session.add(user3)
 session.commit()
 
 user4 = User(name="Sarah Parker",
-                 email="s.parker@ee.net",
-                 password="123",
-                 birthdate="10/01/1992",
-                 image="https://vignette.wikia.nocookie.net/simpsons/images/6/6c/MaggieSimpson.PNG/revision/latest?cb=20170101014602")
+             email="s.parker@ee.net",
+             password="123",
+             birthdate="10/01/1992",
+             image="https://vignette.wikia.nocookie.net/simpsons/images/6/6c/MaggieSimpson.PNG/revision/latest?cb=20170101014602")
 
 session.add(user4)
 session.commit()
 
 user5 = User(name="Samuel Adams",
-                 email="s.adams@cc.net",
-                 password="123",
-                 birthdate="12/13/2002",
-                 image="http://vignette3.wikia.nocookie.net/simpsons/images/6/6b/600px-Sven_Simpson.png/revision/latest?cb=20120614000244")
+             email="s.adams@cc.net",
+             password="123",
+             birthdate="12/13/2002",
+             image="http://vignette3.wikia.nocookie.net/simpsons/images/6/6b/600px-Sven_Simpson.png/revision/latest?cb=20120614000244")
 
 session.add(user5)
 session.commit()
 
 user6 = User(name="Betsy Ross",
-                 email="b.ross@dd.net",
-                 password="123",
-                 birthdate="04/13/1995",
-                 image="https://upload.wikimedia.org/wikipedia/en/e/ec/Lisa_Simpson.png")
+             email="b.ross@dd.net",
+             password="123",
+             birthdate="04/13/1995",
+             image="https://upload.wikimedia.org/wikipedia/en/e/ec/Lisa_Simpson.png")
 
 session.add(user6)
 session.commit()
@@ -134,9 +135,10 @@ exercise1 = Exercise(name="Push-ups",
                      description="An exercise where a person lies down on the floor face down and pushes up with thier arms.",
                      imageurl="/static/images/pushups.png",
                      videourl="https://www.youtube.com/watch?v=Eh00_rniF8E",
-                     body_parts="Pectorials, shoulders, and triceps",
+                     muscle_groups="Pectorials, shoulders, and triceps",
                      type="Strength, endurance, body definition",
-                     trainer=trainer1)
+                     user=user1,
+                     date_added=datetime.datetime(2017, 05, 05))
 
 session.add(exercise1)
 session.commit()
@@ -145,9 +147,10 @@ exercise2 = Exercise(name="Sit-ups",
                      description="An exercise where a person lies down on the floor on their back with thier knees bent and tries to sit up.",
                      imageurl="/static/images/situps.png",
                      videourl="https://www.youtube.com/watch?v=jDwoBqPH0jk",
-                     body_parts="Abdominals",
+                     muscle_groups="Abdominals",
                      type="Strength, endurance, body definition",
-                     trainer=trainer1)
+                     user=user1,
+                     date_added=datetime.datetime(2017, 4, 2))
 
 session.add(exercise2)
 session.commit()
@@ -156,9 +159,10 @@ exercise3 = Exercise(name="Chin-ups",
                      description="An exercise where a person hangs onto a bar and tries to pull themselves up.",
                      imageurl="/static/images/chinups.png",
                      videourl="https://www.youtube.com/watch?v=_71FpEaq-fQ",
-                     body_parts="Shoulders, upper back, biceps",
+                     muscle_groups="Shoulders, upper back, biceps",
                      type="Strength, endurance, body definition",
-                     trainer=trainer2)
+                     user=user2,
+                     date_added=datetime.datetime(2015, 7, 6))
 
 session.add(exercise3)
 session.commit()
@@ -168,9 +172,10 @@ exercise4 = Exercise(name="Jumping Jacks",
                      description="An exercise where a person jumps up and down while swinging their arms and legs in an out sideways.",
                      imageurl="/static/images/jumpingjacks.jpg",
                      videourl="https://www.youtube.com/watch?v=UpH7rm0cYbM",
-                     body_parts="All",
+                     muscle_groups="All",
                      type="Endurance, warmup",
-                     trainer=trainer2)
+                     user=user2,
+                     date_added=datetime.datetime(2016, 6, 9))
 
 session.add(exercise4)
 session.commit()
@@ -180,9 +185,10 @@ exercise5 = Exercise(name="Squats",
                      description="An exercise where a person bends down with thier knees and stands back up.",
                      imageurl="/static/images/squats.jpg",
                      videourl="https://www.youtube.com/watch?v=nEQQle9-0NA",
-                     body_parts="Legs",
+                     muscle_groups="Legs",
                      type="Endurance, strength",
-                     trainer=trainer2)
+                     user=user2,
+                     date_added=datetime.datetime(2016, 1, 1))
 
 session.add(exercise5)
 session.commit()
@@ -191,9 +197,10 @@ exercise6 = Exercise(name="Shoulder press",
                      description="An exercise where a person pushes weights from shoulder height to above their heads and lowers it back down to shoulder height.",
                      imageurl="/static/images/shoulderpress.png",
                      videourl="",
-                     body_parts="Shoulders, triceps",
+                     muscle_groups="Shoulders, triceps",
                      type="Endurance, strength",
-                     trainer=trainer1)
+                     user=user1,
+                     date_added=datetime.datetime(2015, 2, 2))
 
 session.add(exercise6)
 session.commit()
@@ -203,7 +210,8 @@ session.commit()
 routine1 = Routine(name="Super mega push ups",
                    description="Nothing but push ups.  Perform each set with 2 minutes of rest in between.",
                    difficulty="Hard",
-                   trainer=trainer1)
+                   user=user1,
+                   date_added=datetime.datetime(2016, 3, 20))
 
 session.add(routine1)
 session.commit()
@@ -254,7 +262,8 @@ session.commit()
 routine2 = Routine(name="Round about",
                    description="This routine goes through 5 different exercises.",
                    difficulty="Intermediate",
-                   trainer=trainer1)
+                   user=user1,
+                   date_added=datetime.datetime(2017, 4, 1))
 
 session.add(routine2)
 session.commit()
@@ -305,7 +314,8 @@ session.commit()
 routine3 = Routine(name="Round the clock",
                    description="This routine goes through 5 different exercises.",
                    difficulty="Intermediate",
-                   trainer=trainer2)
+                   user=user2,
+                   date_added=datetime.datetime(2016, 8, 26))
 
 session.add(routine3)
 session.commit()
@@ -354,31 +364,31 @@ session.commit()
 # Assign routines to trainees
 routinelist1 = Routinelist(routine=routine1,
                            trainee=trainee3)
-                           
+
 session.add(routinelist1)
 session.commit()
 
 routinelist2 = Routinelist(routine=routine2,
                            trainee=trainee3)
-                           
+
 session.add(routinelist2)
 session.commit()
 
 routinelist3 = Routinelist(routine=routine1,
                            trainee=trainee4)
-                           
+
 session.add(routinelist3)
 session.commit()
 
 routinelist4 = Routinelist(routine=routine1,
                            trainee=trainee5)
-                           
+
 session.add(routinelist4)
 session.commit()
 
 routinelist5 = Routinelist(routine=routine2,
                            trainee=trainee5)
-                           
+
 session.add(routinelist5)
 session.commit()
 
