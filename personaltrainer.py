@@ -254,6 +254,8 @@ def editTrainee(user_id):
     # database for the user and trainee objects, then redirect
     # to the trainee's home page
     if request.method == 'POST':
+        # Get the form data for the user portion.  Blanks will result
+        # in previous values for for name, email, password, or birthdate
         if request.form['name']:
             editUser.name = request.form['name']
         if request.form['email']:
@@ -262,12 +264,12 @@ def editTrainee(user_id):
             editUser.password = request.form['password']
         if request.form['birthdate']:
             editUser.birthdate = request.form['birthdate']
-        if request.form['image']:
-            editUser.birthdate = request.form['image']
+        editUser.image = request.form['image']
         session.add(editUser)
         session.commit()
-        if request.form['goal']:
-            editTrainee.goal = request.form['goal']
+
+        # Get the form data for the trainee information portion
+        editTrainee.goal = request.form['goal']
         session.add(editTrainee)
         session.commit()
         flash("Trainee profile has been updated")
@@ -294,6 +296,8 @@ def editTrainer(user_id):
     # database for the user and trainer objects, then redirect
     # to the trainer's home page
     if request.method == 'POST':
+        # Get the form data for the user portion.  Blanks will result
+        # in previous values for for name, email, password, or birthdate
         if request.form['name']:
             editUser.name = request.form['name']
         if request.form['email']:
@@ -302,20 +306,16 @@ def editTrainer(user_id):
             editUser.password = request.form['password']
         if request.form['birthdate']:
             editUser.birthdate = request.form['birthdate']
-        if request.form['image']:
-            editUser.image = request.form['image']
+        editUser.image = request.form['image']
         session.add(editUser)
         session.commit()
-        if request.form['years']:
-            editTrainer.years_experience = request.form['years']
-        if request.form['gym']:
-            editTrainer.gym = request.form['gym']
-        if request.form['education']:
-            editTrainer.education = request.form['education']
-        if request.form['specialization']:
-            editTrainer.specialization = request.form['specialization']
-        if request.form['background']:
-            editTrainer.background = request.form['background']
+
+        # Get the form data for the trainer information portion
+        editTrainer.years_experience = request.form['years']
+        editTrainer.gym = request.form['gym']
+        editTrainer.education = request.form['education']
+        editTrainer.specialization = request.form['specialization']
+        editTrainer.background = request.form['background']
         session.add(editTrainer)
         session.commit()
         flash("Trainer profile has been updated")
@@ -372,7 +372,7 @@ def addExercise(user_id):
                                description=request.form['desc'],
                                imageurl=request.form['image'],
                                videourl=request.form['video'],
-                               body_parts=musclegroups,
+                               muscle_groups=musclegroups,
                                type=exercisetypes,
                                creator_id=user_id)
         session.add(newExercise)
@@ -411,17 +411,15 @@ def editExercise(user_id, exercise_id):
         editexercisetypes = ""
         editmusclegroups = ", ".join(request.form.getlist('muscle_group'))
         editexercisetypes = ", ".join(request.form.getlist('exercise_type'))
-
+        
+        # Get the edited form data for the exercises, a blank entry for
+        # the name field will result in the previous value
         if request.form['name']:
             editExercise.name = request.form['name']
-        if request.form['desc']:
-            editExercise.description = request.form['desc']
-        if request.form['image']:
-            editExercise.imageurl = request.form['image']
-        if request.form['video']:
-            editExercise.videourl = request.form['video']
-
-        editExercise.body_parts = editmusclegroups
+        editExercise.description = request.form['desc']
+        editExercise.imageurl = request.form['image']
+        editExercise.videourl = request.form['video']
+        editExercise.muscle_groups = editmusclegroups
         editExercise.type = editexercisetypes
         session.add(editExercise)
         session.commit()
@@ -480,9 +478,10 @@ def showTraineeRoutines(user_id):
     if trainee is None:
         return "No trainee info exists for this user"
 
-    # Get the trainee's routine list
+    # Get the trainee's routine list and sort by id
+    # (order of creation in the database)
     routinelist = (session.query(Routinelist).filter_by(trainee_id=trainee.id)
-                   .all())
+                   .order_by(desc(Routinelist.id)).all())
 
     # Show the trainee's routine list
     return render_template('traineeroutines.html', routinelist=routinelist,
@@ -616,10 +615,8 @@ def editRoutine(user_id, routine_id):
             editRoutine.name = request.form['name']
         if request.form['difficulty']:
             editRoutine.difficulty = request.form['difficulty']
-        if request.form['desc']:
-            editRoutine.description = request.form['desc']
-        else:
-            editRoutine.description = ""
+        editRoutine.description = request.form['desc']
+        
         session.add(editRoutine)
         session.commit()
         flash("Routine '%s' has been updated." % editRoutine.name)
@@ -633,8 +630,7 @@ def editRoutine(user_id, routine_id):
                 rep = "rep%s" % i
                 if request.form[exercise]:
                     editSet.exercise_id = request.form[exercise]
-                if request.form[rep]:
-                    editSet.repetitions = request.form[rep]
+                editSet.repetitions = request.form[rep]
                 session.add(editSet)
                 session.commit()
                 flash("A set was updated in routine '%s'" % editRoutine.name)

@@ -13,11 +13,11 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 
-#Table for user information
+# Table for user information
 class User(Base):
     # Create the table name
     __tablename__ = 'user'
-    
+
     # Map table columns to the table
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
@@ -30,7 +30,7 @@ class User(Base):
 # Table for trainer information
 class Trainer(Base):
     __tablename__ = 'trainer'
-    
+
     id = Column(Integer, primary_key=True)
     years_experience = Column(Integer)
     gym = Column(String(250))
@@ -44,7 +44,7 @@ class Trainer(Base):
 # Table for trainee information
 class Trainee(Base):
     __tablename__ = 'trainee'
-    
+
     id = Column(Integer, primary_key=True)
     goal = Column(String)
     trainer_id = Column(Integer, ForeignKey('trainer.id'))
@@ -52,17 +52,17 @@ class Trainee(Base):
     user_id = Column(Integer, ForeignKey('user.id'))
     user = relationship(User)
 
-    
+
 # Table for exercise routine information
 class Routine(Base):
     __tablename__ = 'routine'
-    
+
     id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     description = Column(String(500))
     difficulty = Column(String(80))
-    creator_id = Column(Integer, ForeignKey('trainer.id'))
-    trainer = relationship(Trainer)
+    creator_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
     date_added = Column(DateTime, default=datetime.datetime.utcnow)
     date_updated = Column(DateTime, onupdate=datetime.datetime.now)
 
@@ -70,7 +70,7 @@ class Routine(Base):
 # Table for trainee routines
 class Routinelist(Base):
     __tablename__ = 'routinelist'
-    
+
     id = Column(Integer, primary_key=True)
     routine_id = Column(Integer, ForeignKey('routine.id'))
     routine = relationship(Routine)
@@ -78,26 +78,28 @@ class Routinelist(Base):
     trainee = relationship(Trainee)
     date_added = Column(DateTime, default=datetime.datetime.utcnow)
 
-    
+
 # Table for exercise information
 class Exercise(Base):
     __tablename__ = 'exercise'
-    
+
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
     description = Column(String(500))
     imageurl = Column(String)
     videourl = Column(String)
-    body_parts = Column(String)
     type = Column(String(250))
-    creator_id = Column((Integer), ForeignKey('trainer.id'))
-    trainer = relationship(Trainer)
+    muscle_groups = Column(String)
+    creator_id = Column((Integer), ForeignKey('user.id'))
+    user = relationship(User)
+    date_added = Column(DateTime, default=datetime.datetime.utcnow)
+    date_updated = Column(DateTime, onupdate=datetime.datetime.now)
 
 
 # Table for set information
 class Set(Base):
     __tablename__ = 'set'
-    
+
     id = Column(Integer, primary_key=True)
     order = Column(Integer, nullable=False)
     repetitions = Column(Integer, nullable=False)
@@ -110,20 +112,19 @@ class Set(Base):
 # Table for performance records
 class PerformanceRecord(Base):
     __tablename__ = 'performancerecord'
-    
+
     id = Column(Integer, primary_key=True)
     routine_name = Column(String, nullable=False)
     trainee_id = Column(Integer, nullable=False)
     comments = Column(String)
     rating = Column(Integer)
     performed_date = Column(DateTime, default=datetime.datetime.utcnow)
-    last_updated = Column(DateTime, onupdate=datetime.datetime.now)
 
-    
+
 # Table for exercise records
 class ExerciseRecord(Base):
     __tablename__ = 'exerciserecord'
-    
+
     id = Column(Integer, primary_key=True)
     order = Column(Integer)
     exercise_name = Column(String(250))
