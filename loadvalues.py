@@ -138,7 +138,7 @@ exercise1 = Exercise(name="Push-ups",
                      muscle_groups="Pectorials, shoulders, and triceps",
                      type="Strength, endurance, body definition",
                      user=user1,
-                     date_added=datetime.datetime(2017, 05, 05))
+                     date_added=datetime.datetime(2017, 5, 5))
 
 session.add(exercise1)
 session.commit()
