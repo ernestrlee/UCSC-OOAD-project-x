@@ -8,7 +8,7 @@
         <div class="form-section">
             <form id="edit_routine" action="{{ url_for('editRoutine', user_id=user_id, routine_id=routine_id) }}" method="post">
                 <h3>Routine Name:</h3>
-                <input class="reg-input" type="text" size="50" name="name" placeholder="{{ routine.name }}"><br>
+                <input class="reg-input" type="text" size="50" name="name" placeholder="{{ routine.name }}" value="{{ routine.name }}"><br>
                 <h3>Difficulty:</h3>
                 <select name="difficulty">
                     <option value="">Select a difficulty</option>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="add-reps">
                         <h3># of reps:</h3>
-                        <input class="rep-input" type="text" size="10" name="rep{{ i }}" placeholder="{{ sets[(i-1)].repetitions }}"><br>
+                        <input class="rep-input" type="text" size="10" name="rep{{ i }}" placeholder="Enter # of reps" value="{{ sets[(i-1)].repetitions }}"><br>
                     </div>
                 </div>
                 {% endfor %}

@@ -8,23 +8,23 @@
         <div class="form-section">
             <form id="edit_trainer_form" action="{{ url_for('editTrainer', user_id=user_id) }}" method="post">
                 <h3>Name:</h3>
-                <input class="reg-input" type="text" size="50" name="name" placeholder="{{ user.name }}"><br>
+                <input class="reg-input" type="text" size="50" name="name" placeholder="{{ user.name }}" value="{{ user.name }}"><br>
                 <h3>Email address:</h3>
-                <input class="reg-input" type="text" size="50" name="email" placeholder="{{ user.email }}"><br>
+                <input class="reg-input" type="text" size="50" name="email" placeholder="{{ user.email }}" value="{{ user.email }}"><br>
                 <h3>Password:</h3>
-                <input class="reg-input" type="password" size="50" name="password" placeholder="{{ user.password }}"><br>
+                <input class="reg-input" type="password" size="50" name="password" placeholder="Enter a password" value="{{ user.password }}"><br>
                 <h3>Birthdate:</h3>
-                <input type="text" size="10" name="birthdate" placeholder="{{ user.birthdate }}"><br>
+                <input type="text" size="10" name="birthdate" placeholder="{{ user.birthdate }}" value="{{ user.birthdate }}"><br>
                 <h3>Profile Image URL:</h3>
-                <input class="reg-input" type="text" size="50" name="image" placeholder="{{ user.image }}"><br>
+                <input class="reg-input" type="text" size="50" name="image" placeholder="Enter a URL for your profile picture" value="{{ user.image }}"><br>
                 <h3>Years of experience:</h3>
-                <input type="text" size="5" name="years" placeholder="{{ trainer.years_experience }}"><br>
+                <input type="text" size="10" name="years" placeholder="Enter your years of experience" value="{{ trainer.years_experience }}"><br>
                 <h3>Home Gym:</h3>
-                <input class="reg-input" type="text" size="50" name="gym" placeholder="{{ trainer.gym }}"><br>
+                <input class="reg-input" type="text" size="50" name="gym" placeholder="Enter your home gym" value="{{ trainer.gym }}"><br>
                 <h3>Education:</h3>
-                <input class="reg-input" type="text" size="50" name="education" placeholder="{{ trainer.education }}"><br>
+                <input class="reg-input" type="text" size="50" name="education" placeholder="Enter your education" value="{{ trainer.education }}"><br>
                 <h3>Specialization:</h3>
-                <input class="reg-input" type="text" size="50" name="specialization" placeholder="{{ trainer.specialization }}"><br>
+                <input class="reg-input" type="text" size="50" name="specialization" placeholder="Enter your area of expertise" value="{{ trainer.specialization }}"><br>
                 <h3>Background:</h3>
                 <textarea class="reg-textarea" name="background" placeholder="Enter background information">{{ trainer.background }}</textarea><br>
                 <br>

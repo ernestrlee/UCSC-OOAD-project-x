@@ -15,7 +15,7 @@
             {% for routine in routines %}
             <div class="card-container-block">
                 <h2>Name: <span class="highlight">{{ routine.name }}</span></h2>
-                <h3 class="created-by">Created by: {{ routine.user.name }}</h3>
+                <h3 class="created-by">Created by: {{ routine.user.name }} on {{ routine.date_added.strftime("%m/%d/%Y") }}</h3>
                 <ul>
                     <li>Description: {{ routine.description }}</li>
                     <li>Difficulty: {{ routine.difficulty }}</li>
