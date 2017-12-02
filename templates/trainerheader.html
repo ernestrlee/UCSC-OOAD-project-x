@@ -6,10 +6,11 @@
     <div id="nav_button">
         <button onclick="location.href=&quot{{ url_for('showTrainerHomepage', user_id=user_id) }}&quot">Home</button>
         <button onclick="location.href=&quot{{ url_for('showTrainees', user_id=user_id) }}&quot">View Trainees</button>
+        <button onclick="location.href=&quot{{ url_for('showTrainers', user_id=user_id) }}&quot">View Trainers</button>
         <button onclick="location.href=&quot{{ url_for('showTrainerRoutines', user_id=user_id) }}&quot">View Routines</button>
         <button onclick="location.href=&quot{{ url_for('showExercises', user_id=user_id) }}&quot">View Exercises</button>
         <button onclick="location.href=&quot{{ url_for('editTrainer', user_id=user_id) }}&quot">Edit Profile</button>
         <button onclick="location.href=&quot{{ url_for('showHome') }}&quot">Log off</button>
     </div>
 </header>  
-{% include "flashmessage.html" %}    
+{% include "flashmessage.html" %}

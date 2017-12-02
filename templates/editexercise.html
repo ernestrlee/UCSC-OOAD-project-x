@@ -8,16 +8,16 @@
         <div class="form-section">
             <form id="edit_exercise" action="{{ url_for('editExercise', user_id=user_id, exercise_id=exercise_id) }}" method="post">
                 <h3>Name:</h3>
-                <input class="reg-input" type="text" size="50" name="name" placeholder="{{ exercise.name }}"><br>
+                <input class="reg-input" type="text" size="50" name="name" placeholder="{{ exercise.name }}" value="{{ exercise.name }}"><br>
                 <h3>Description:</h3>
                 <textarea class="reg-textarea" name="desc" placeholder="Enter an exercise description">{{ exercise.description }}</textarea><br>
                 <h3>Exercise Image URL:</h3>
-                <input class="reg-input" type="text" size="50" name="image" placeholder="{{ exercise.imageurl }}"><br>
+                <input class="reg-input" type="text" size="50" name="image" placeholder="Enter a URL for the exercise image" value="{{ exercise.imageurl }}"><br>
                 <h3>Exercise Video URL:</h3>
-                <input class="reg-input" type="text" size="50" name="video" placeholder="{{ exercise.videourl }}"><br>
-                <h3>Body parts worked:</h3>
+                <input class="reg-input" type="text" size="50" name="video" placeholder="Enter a URL for the exercise video" value="{{ exercise.videourl }}"><br>
+                <h3>Muscle groups worked:</h3>
                 {% for muscle_group in muscle_groups %} 
-                    {% if muscle_group in exercise.body_parts %}
+                    {% if muscle_group in exercise.muscle_groups %}
                     <input type="checkbox" name="muscle_group" value="{{ muscle_group }}" checked="checked">{{ muscle_group }}<br>
                     {% else %}
                     <input type="checkbox" name="muscle_group" value="{{ muscle_group }}">{{ muscle_group }}<br>

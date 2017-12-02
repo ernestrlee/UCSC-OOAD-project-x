@@ -16,8 +16,8 @@
                     <li>Difficulty: {{ routine.routine.difficulty }}</li>
                 </ul>
                 <br>                
-                <button onclick="window.open('{{ url_for('showRoutineDetail', routine_id=routine.routine.id) }}', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=200,left=500,width=880,height=610')">View Routine</button>
-                <button onclick="location.href=&quot{{ url_for('performRoutine', user_id=user_id, routine_id=routine.routine.id) }}&quot">Start Routine</button>
+                <button onclick="window.open('{{ url_for('showRoutineDetail', routine_id=routine.routine_id) }}', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=200,left=500,width=880,height=610')">View Routine</button>
+                <button onclick="location.href=&quot{{ url_for('performRoutine', user_id=user_id, routine_id=routine.routine_id) }}&quot">Start Routine</button>
             </div>
             {% endfor %}            
         </div>           
