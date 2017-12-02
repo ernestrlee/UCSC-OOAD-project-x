@@ -15,7 +15,7 @@
                 <input class="reg-input" type="text" size="50" name="image" placeholder="Enter a URL for the exercise picture"><br>
                 <h3>Exercise Video URL:</h3>
                 <input class="reg-input" type="text" size="50" name="video" placeholder="Enter a URL for the exercise video"><br>
-                <h3>Body parts worked:</h3>
+                <h3>Muscle groups worked:</h3>
                 {% for muscle_group in muscle_groups %}
                 <input type="checkbox" name="muscle_group" value="{{ muscle_group }}">{{ muscle_group }}<br>
                 {% endfor %}

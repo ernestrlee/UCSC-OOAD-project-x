@@ -13,8 +13,8 @@
                 Difficulty: {{ routine.difficulty }}<br>
                 Description: {{ routine.description }}<br>
                 <br>
-                <button onclick="window.open('{{ url_for('showRoutineSet', user_id=user_id, routine_id=routine.id) }}', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=200,left=500,width=880,height=610')">View set details</button>
-            </div>            
+                <button onclick="window.open('{{ url_for('showRoutineDetail', routine_id=routine.id) }}', '_blank', 'toolbar=no,scrollbars=yes,resizable=yes,top=200,left=500,width=880,height=610')">View set details</button>
+            </div>
         <div>
             <form id="assign_routine" action="{{ url_for('assignRoutineToTrainees', user_id=user_id, routine_id=routine.id) }}" method="post">
                 {% if trainees %}
