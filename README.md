@@ -11,7 +11,10 @@ This web application is designed to allow a trainee to perform exercise routines
 ## Notes:
 This app is a proof of concept.  As such certain items should be updated prior to deploying
 * Login system is not fully functional and does not perform any authentication.
-* Images used are for demonstrative purposes only.
+* Images that are used in the app are for demonstrative purposes only.
 * App is in debug mode
 
+## Setup instructions:
 
+## Known issues:
+When an exercise routine is deleted, the trainee is still left with a blank routine shown on their routine list.
